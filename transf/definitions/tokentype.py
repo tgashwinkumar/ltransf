@@ -1,6 +1,18 @@
 from enum import Enum
 
+class TC(Enum):
+    OPER = 0
+    PAREN = 1
+    SQUPAREN = 2
+    CONST = 3
+    DIGIT = 4
+    FUNC = 5
+    SYMBOL = 6
+
 class TT(Enum):
+
+    NULL = None
+
     PLUS = '+'
     MINUS = '-'
     MULTI = '*'
@@ -15,7 +27,7 @@ class TT(Enum):
     SIN = 'sin'
     COS = 'cos'
     TAN = 'tan'
-    
+    SQRT = 'sqrt'
     USTEP = 'ustep'
     DDELTA = 'ddelta'
 

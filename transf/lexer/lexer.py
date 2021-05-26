@@ -20,7 +20,7 @@ class Lexer:
         else:
             self.currChar = None        
 
-    def runLexer(self):
+    def __runLexer(self):
         self.__nextChar()
         while self.currChar:
             if self.currChar in ' \n\t':
@@ -74,7 +74,7 @@ class Lexer:
                     self.tokens.append(LexicalToken(TT.CONST, alpha))
 
     def getToken(self):
-        self.runLexer()
+        self.__runLexer()
         return self.tokens
 
     def __fetchDigits(self):
@@ -107,6 +107,9 @@ class Lexer:
 
         elif word.lower() == 'tan':
             return TT.TAN
+
+        elif word.lower() == 'sqrt':
+            return TT.SQRT
 
         elif word.lower() == 'u' or word.lower() == 'ustep':
             return TT.USTEP
