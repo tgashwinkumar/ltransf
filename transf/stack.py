@@ -8,6 +8,19 @@ class StackToken:
         self.tokenValue = tokenValue
         self.prevToken = prevToken
 
+    def __repr__(self):
+        if isinstance(self.tokenValue, LexicalToken):
+            return f"<Stack Token - LexToken {self.tokenValue.tokenName}: {self.tokenValue.tokenVal} >"
+        else:
+            return f"<Stack Token - Expression {len(self.tokenValue.tokens)}: {self.tokenValue.tokens} >"
+
+    def __str__(self):
+        if isinstance(self.tokenValue, LexicalToken):
+            return f"<Stack Token - LexToken {self.tokenValue.tokenName}: {self.tokenValue.tokenVal} >"
+        else:
+            return f"<Stack Token - Expression {len(self.tokenValue.tokens)}: {self.tokenValue.tokens} >"
+
+
 class Stack:
 
     def __init__(self, currentToken: Optional[StackToken] = None):

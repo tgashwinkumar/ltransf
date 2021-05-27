@@ -1,8 +1,9 @@
-from transf.tokentype import TT
-from transf.token import LexicalToken
 from typing import Optional
-from transf.position import Position
-from transf.symbol import Symbol
+
+from transf.definitions.position import Position
+from transf.definitions.symbol import Symbol
+from transf.definitions.token import LexicalToken
+from transf.definitions.tokentype import TT
 
 
 class Lexer:
@@ -76,6 +77,9 @@ class Lexer:
     def getToken(self):
         self.__runLexer()
         return self.tokens
+
+    def __repr__(self):
+        return "\n<LexerTokens>" + '\n\t'.join(self.getToken()) + "\n</LexerTokens>"
 
     def __fetchDigits(self):
         number = ""
