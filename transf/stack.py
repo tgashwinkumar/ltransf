@@ -10,15 +10,15 @@ class StackToken:
 
     def __repr__(self):
         if isinstance(self.tokenValue, LexicalToken):
-            return f"<Stack Token - LexToken {self.tokenValue.tokenName}: {self.tokenValue.tokenVal} >"
+            return '\n' + f"[StackToken]{self.tokenValue}>" 
         else:
-            return f"<Stack Token - Expression {len(self.tokenValue.tokens)}: {self.tokenValue.tokens} >"
+            return '\n' + f"[StackToken]{self.tokenValue}>"
 
     def __str__(self):
         if isinstance(self.tokenValue, LexicalToken):
-            return f"<Stack Token - LexToken {self.tokenValue.tokenName}: {self.tokenValue.tokenVal} >"
+            return '\n' + f"[StackToken]{self.tokenValue}>"
         else:
-            return f"<Stack Token - Expression {len(self.tokenValue.tokens)}: {self.tokenValue.tokens} >"
+            return '\n' + f"[StackToken]{self.tokenValue}>"
 
 
 class Stack:
@@ -47,3 +47,7 @@ class Stack:
 
     def getCurrent(self):
         return self.currentToken.tokenValue
+
+    def copy(self):
+        return Stack(self.currentToken)
+

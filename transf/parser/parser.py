@@ -70,4 +70,4 @@ class Parser:
 
     def printParser(self):
         self.__runParser()
-        self.operandStack.getCurrent().printExpression()
+        print(self.operandStack.getCurrent())
