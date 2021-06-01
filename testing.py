@@ -7,3 +7,7 @@ print('\n')
 
 pars = Parser(lex.getToken())
 pars.printParser()
+
+
+
+#In Binary TRee. 
