@@ -1,24 +1,24 @@
-from transf.expression import Expression
+from transf.definitions.expression import Expression, ExpressionNode
 from typing import Optional, Union
 from transf.definitions.token import LexicalToken
 from transf.definitions.position import Position
 
 class StackToken:
-    def __init__(self, tokenValue:Union[LexicalToken, Expression], prevToken: Union[LexicalToken, Expression, None] = None):
+    def __init__(self, tokenValue:Union[LexicalToken], prevToken: Union[LexicalToken, None] = None):
         self.tokenValue = tokenValue
         self.prevToken = prevToken
 
     def __repr__(self):
-        if isinstance(self.tokenValue, LexicalToken):
-            return '\n' + f"[StackToken]{self.tokenValue}>" 
-        else:
-            return '\n' + f"[StackToken]{self.tokenValue}>"
+        return '\n' + f"[StackToken]{self.tokenValue}"
 
     def __str__(self):
-        if isinstance(self.tokenValue, LexicalToken):
-            return '\n' + f"[StackToken]{self.tokenValue}>"
-        else:
-            return '\n' + f"[StackToken]{self.tokenValue}>"
+        return '\n' + f"[StackToken]{self.tokenValue}"
+
+    def isLex(self):
+        return isinstance(self.tokenValue, LexicalToken)
+    
+    def isExpNode(self):
+        return isinstance(self.tokenValue, ExpressionNode)
 
 
 class Stack:
