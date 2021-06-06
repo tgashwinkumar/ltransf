@@ -26,6 +26,8 @@ class TT(Enum):
 
     SIN = 'sin'
     COS = 'cos'
+    SINH = 'sinh'
+    COSH = 'cosh'
     TAN = 'tan'
     SQRT = 'sqrt'
     USTEP = 'ustep'

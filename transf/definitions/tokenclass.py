@@ -8,7 +8,7 @@ class TokenClass:
         self.__operators = [TT.PLUS, TT.MINUS, TT.MULTI, TT.DIVID, TT.POWER]
         self.__parentheses = [TT.LPAREN, TT.RPAREN]
         self.__squParentheses = [TT.LSQU, TT.RSQU]
-        self.__functions = [TT.SIN, TT.COS, TT.TAN, TT.SQRT, TT.USTEP, TT.DDELTA]
+        self.__functions = [TT.SIN, TT.COS, TT.TAN, TT.SQRT, TT.USTEP, TT.DDELTA, TT.SINH, TT.COSH]
         self.__constants = [TT.EXP, TT.PI, TT.CONST]
 
     def getClass(self):
