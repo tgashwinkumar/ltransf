@@ -6,4 +6,7 @@ class BinaryNode:
         self.root = root
         self.leftNode = leftNode
         self.rightNode = rightNode
+
+    def __repr__(self):
+        return '\n' + f"BinaryNode op: {self.root} left: {self.leftNode} right: {self.rightNode}"
         

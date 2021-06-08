@@ -1,14 +1,16 @@
 from transf.definitions.tokenclass import TokenClass
-from typing import Union
+from typing import Literal, Union
 from transf.definitions.tokentype import TC, TT
 
 class LexicalToken:
 
-    def __init__(self, ttype: TT = TT.NULL, tval: Union[str, int, float, None] = None):
+    def __init__(self, ttype: TT = TT.NULL, tval: Union[str, int, float, None] = None, isNeg: bool = False, isReciprocal: bool = False):
         self.tokenType: TT = ttype
         self.tokenName = ttype.name
         self.tokenVal = tval if tval else ttype.value
         self.tokenClass: TC = TokenClass(self.tokenType).getClass()
+        self.isTokenNegative = isNeg
+        self.isTokenReciprocal = isReciprocal
 
     def __str__(self):
         return f"<LexicalToken {self.tokenType.name} : {self.tokenVal} >"

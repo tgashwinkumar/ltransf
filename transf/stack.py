@@ -1,10 +1,10 @@
-from transf.expression import Expression
 from typing import Optional, Union
 from transf.definitions.token import LexicalToken
 from transf.definitions.position import Position
+from transf.expression_nodes.binarynode import BinaryNode
 
 class StackToken:
-    def __init__(self, tokenValue:Union[LexicalToken, Expression], prevToken: Union[LexicalToken, Expression, None] = None):
+    def __init__(self, tokenValue:Union[LexicalToken, BinaryNode], prevToken: Union[LexicalToken, BinaryNode,None] = None):
         self.tokenValue = tokenValue
         self.prevToken = prevToken
 
@@ -28,8 +28,8 @@ class Stack:
         self.pos: Position = Position(0) if currentToken else Position(-1)
         self.length:int = 1 if currentToken else 0
 
-    def push(self, token: Union[StackToken,LexicalToken,Expression]):
-        if isinstance(token, (LexicalToken, Expression)):
+    def push(self, token: Union[StackToken,LexicalToken, BinaryNode]):
+        if isinstance(token, (LexicalToken, BinaryNode)):
             token = StackToken(token)
         token.prevToken = self.currentToken
         self.currentToken = token
