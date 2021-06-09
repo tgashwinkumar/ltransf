@@ -1,12 +1,12 @@
-from transf.definitions.tokentype import TC, TT
-from typing import List, Optional
+from transf.definitions.tokentype import TT
+from typing import List, Optional, Union
 from transf.definitions.token import LexicalToken
 from transf.definitions.position import Position
 
 class AdditiveStack:
 
-    def __init__(self, tokens: List[LexicalToken]):
-        self.tokens = tokens
+    def __init__(self, tokens: Optional[List[LexicalToken]]):
+        self.tokens = tokens if tokens else []
         self.currPos = Position(-1)
         self.stack = []
         self.currentToken: Optional[LexicalToken] = None
@@ -43,6 +43,12 @@ class AdditiveStack:
             self.addStack.append(lexStack)
             lexStack = []
 
-    def printStack(self):
+    def getStack(self):
         self.__splitStack()
-        print(self.addStack)
+        return self.addStack
+
+    def printStack(self):
+        print(self.getStack())
+
+    def add(self, stackValue):
+        self.addStack.append(stackValue)

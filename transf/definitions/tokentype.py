@@ -41,6 +41,5 @@ class TT(Enum):
 
     EXP = 'exp'
     PI = 'pi'
-
     CONST = 'const'
 

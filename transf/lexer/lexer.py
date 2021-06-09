@@ -28,53 +28,50 @@ class Lexer:
                 self.__nextChar()
 
             elif self.currChar == '+':
-                self.tokens.append(LexicalToken(TT.PLUS))
+                self.tokens.append(LexicalToken(ttype=TT.PLUS))
                 self.__nextChar()
             
             elif self.currChar == '-':
-                self.tokens.append(LexicalToken(TT.MINUS))
+                self.tokens.append(LexicalToken(ttype=TT.MINUS))
                 self.__nextChar()
 
             elif self.currChar == '*':
-                self.tokens.append(LexicalToken(TT.MULTI))
+                self.tokens.append(LexicalToken(ttype=TT.MULTI))
                 self.__nextChar()
 
             elif self.currChar == '^':
-                self.tokens.append(LexicalToken(TT.POWER))
+                self.tokens.append(LexicalToken(ttype=TT.POWER))
                 self.__nextChar()
             
             elif self.currChar == '/':
-                self.tokens.append(LexicalToken(TT.DIVID))
+                self.tokens.append(LexicalToken(ttype=TT.DIVID))
                 self.__nextChar()
 
             elif self.currChar == '(':
-                self.tokens.append(LexicalToken(TT.LPAREN))
+                self.tokens.append(LexicalToken(ttype=TT.LPAREN))
                 self.__nextChar()
 
             elif self.currChar == ')':
-                self.tokens.append(LexicalToken(TT.RPAREN))
+                self.tokens.append(LexicalToken(ttype=TT.RPAREN))
                 self.__nextChar()
 
             elif self.currChar == '[':
-                self.tokens.append(LexicalToken(TT.LSQU))
+                self.tokens.append(LexicalToken(ttype=TT.LSQU))
                 self.__nextChar()
 
             elif self.currChar == ']':
-                self.tokens.append(LexicalToken(TT.RSQU))
+                self.tokens.append(LexicalToken(ttype=TT.RSQU))
                 self.__nextChar()
 
             elif self.currChar.isdigit():
                 number, ttype = self.__fetchDigits()
-                self.tokens.append(LexicalToken(ttype, number))
+                self.tokens.append(LexicalToken(ttype = ttype, tval=number))
 
             elif self.currChar.isalpha():
-                alpha = self.__fetchAlpha()
-                if isinstance(alpha, TT):
-                    self.tokens.append(LexicalToken(alpha))
-                else:
-                    self.tokens.append(LexicalToken(TT.CONST, alpha))
+                ttype, tval = self.__fetchAlpha()
+                self.tokens.append(LexicalToken(ttype=ttype, tval=tval))
 
-    def getToken(self):
+    def getTokens(self):
         self.__runLexer()
         return self.tokens
 
@@ -104,34 +101,34 @@ class Lexer:
                 break
 
         if word.lower() == 'sin':
-            return TT.SIN
+            return [TT.SIN, None]
 
         elif word.lower() == 'cos':
-            return TT.COS
+            return [TT.COS, None]
 
         elif word.lower() == 'tan':
-            return TT.TAN
+            return [TT.TAN, None]
 
         elif word.lower() == 'sqrt':
-            return TT.SQRT
+            return [TT.SQRT, None]
 
         elif word.lower() == 'u' or word.lower() == 'ustep':
-            return TT.USTEP
+            return [TT.USTEP, None]
 
         elif word.lower() == 'd' or word.lower() == 'ddelta':
-            return TT.DDELTA
+            return [TT.DDELTA, None]
 
         elif word.lower() == 'e' or word.lower() == 'exp':
-            return TT.EXP
+            return [TT.EXP, None]
 
         elif word.lower() == 'pi':
-            return TT.PI
+            return [TT.PI, None]
 
         elif word == self.symbol.val:
-            return TT.SYMBOL
+            return [TT.SYMBOL, self.symbol.val]
 
         elif len(word) == 1:
-            return word
+            return [TT.CONST, word]
 
 
 

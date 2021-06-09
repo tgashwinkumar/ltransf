@@ -7,7 +7,7 @@ from transf.expression_nodes.binarynode import BinaryNode
 
 
 class TrigFuncExpNode(BinaryNode):
-    def __init__(self, funcType, root: LexicalToken, leftNode: Union[Power1ExpNode, LexicalToken]):
+    def __init__(self, funcType: TT, root: LexicalToken, leftNode: Union[Power1ExpNode, LexicalToken]):
         super().__init__(root, leftNode=leftNode, rightNode=None)
         self.funcType = funcType
         if isinstance(leftNode, LexicalToken) and leftNode.tokenType == TT.SYMBOL:
