@@ -5,8 +5,8 @@ from transf.definitions.position import Position
 
 class AdditiveStack:
 
-    def __init__(self, tokens: Optional[List[LexicalToken]]):
-        self.tokens = tokens if tokens else []
+    def __init__(self, tokens: List[LexicalToken] = []):
+        self.tokens = tokens
         self.currPos = Position(-1)
         self.stack = []
         self.currentToken: Optional[LexicalToken] = None

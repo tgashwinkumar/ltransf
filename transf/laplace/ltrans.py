@@ -1,3 +1,4 @@
+from transf.expression_nodes.udfunc_expnode import UdFuncExpNode
 from transf.expression_nodes.powern_expnode import PowerNExpNode
 from transf.expression_nodes.constevalconst_expnode import ConstEvalConstExpNode
 from transf.definitions.symbol import Symbol
@@ -9,7 +10,7 @@ from transf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
 class LTrans:
 
     @staticmethod
-    def trigFunc(self, expNode: TrigFuncExpNode):
+    def trigFunc(expNode: TrigFuncExpNode):
         symbolToken = LexicalToken(TT.SYMBOL, tval=Symbol('s').val)
         param = expNode.param
         funcType = expNode.funcType
@@ -36,12 +37,14 @@ class LTrans:
             rightNode=LexicalToken(TT.INT, 2)
         )
 
-        final = BinaryNode(
+        return BinaryNode(
             root=LexicalToken(TT.DIVID),
             leftNode=numer,
             rightNode=denom
         )
-        
-        return final
+
+    @staticmethod
+    def udfunc(expNode: UdFuncExpNode):
+        return 
 
         

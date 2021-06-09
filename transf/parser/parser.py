@@ -17,7 +17,6 @@ from transf.definitions.tokentype import TC, TT
 class Parser:
     def __init__(self, lexerTokens: List[LexicalToken]):
         self.lexerTokens = lexerTokens
-        print(len(self.lexerTokens))
         self.currPos = Position(-1)
         self.currToken: Optional[LexicalToken] = None
         self.operandStack: Stack = Stack()
@@ -29,12 +28,10 @@ class Parser:
             self.currToken = self.lexerTokens[self.currPos.idx]
         else:
             self.currToken = None
-        print("Position: ", self.currPos.idx,
-              "\tCurrent Token: ", self.currToken)
 
 
     def __runParser(self):
-        print("Running Parser")  
+        # print("Running Parser")  
         self.__advance()
         while self.currToken:
             if self.currToken.tokenClass == TC.DIGIT or self.currToken.tokenClass == TC.CONST or self.currToken.tokenClass == TC.SYMBOL:
@@ -74,6 +71,10 @@ class Parser:
     def printParser(self):
         self.__runParser()
         print(self.operandStack.getCurrent())
+
+    def getNodes(self):
+        self.__runParser()
+        return self.operandStack.getCurrent()
 
     def __getBinaryExpression(self):
         rightToken = self.operandStack.pop()
