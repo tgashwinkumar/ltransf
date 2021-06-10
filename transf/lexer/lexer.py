@@ -23,7 +23,10 @@ class Lexer:
             self.currChar = None   
 
     def __getPrevChar(self):
-        return self.expression[self.currPos.idx - 1]     
+        temp = self.currPos.idx - 1
+        while self.expression[temp] in ' \n\t' and temp > 0:
+            temp -= 1
+        return self.expression[temp]
 
     def __runLexer(self):
         self.__nextChar()
@@ -34,17 +37,16 @@ class Lexer:
             elif self.currChar == '+':
                 if self.currPos.idx == 0:
                     self.__nextChar()
-                    continue
-                elif self.__getPrevChar() in '+*-(/^ \n\t':
+                elif self.__getPrevChar() in '+*-(/^':
                     self.__nextChar()
-                    continue
-                self.tokens.append(LexicalToken(ttype=TT.PLUS))
-                self.__nextChar()
+                else:
+                    self.tokens.append(LexicalToken(ttype=TT.PLUS))
+                    self.__nextChar()
             
             elif self.currChar == '-':
                 if self.currPos.idx == 0:
                     self.isCurrCharUnderNeg = True
-                elif self.__getPrevChar() in '+*-(/^ \n\t':
+                elif self.__getPrevChar() in '+*-(/^':
                     self.isCurrCharUnderNeg = True
                 else:
                     self.tokens.append(LexicalToken(ttype=TT.MINUS))
@@ -125,7 +127,13 @@ class Lexer:
             return [TT.COS, None]
 
         elif word.lower() == 'tan':
-            return [TT.TAN, None]
+            return [TT.TAN, None]\
+
+        elif word.lower() == 'sinh':
+            return [TT.SINH, None]
+
+        elif word.lower() == 'cosh':
+            return [TT.COSH, None]
 
         elif word.lower() == 'sqrt':
             return [TT.SQRT, None]

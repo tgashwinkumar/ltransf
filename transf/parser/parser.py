@@ -92,7 +92,7 @@ class Parser:
         if operator.tokenType == TT.POWER:
             if leftToken.tokenClass == TC.CONST or leftToken.tokenClass == TC.DIGIT:
                 if rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
-                    return ConstEvalConstExpNode(operator, leftToken, rightToken)
+                    return ConstEvalConstExpNode(operator, leftToken, rightToken).evaluate()
             elif leftToken.tokenType == TT.EXP:
                 if isinstance(rightToken, (LexicalToken, Power1ExpNode)):
                     return ExponentialExpNode(operator, leftToken, rightToken)
@@ -104,7 +104,7 @@ class Parser:
                 if rightToken.tokenType == TT.SYMBOL:
                     return Power1ExpNode(operator, leftToken, rightToken)
                 elif rightToken.tokenClass == TC.DIGIT or rightToken.tokenClass == TC.CONST:
-                    return ConstEvalConstExpNode(operator, leftToken, rightToken)
+                    return ConstEvalConstExpNode(operator, leftToken, rightToken).evaluate()
                 else:
                     return ConstMultiPolyExpNode(operator, leftToken, rightToken)
 
@@ -112,11 +112,15 @@ class Parser:
             if rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
                 if leftToken.tokenType == TT.SYMBOL:
                     return LinearPolynomialExpNode(operator, leftToken, rightToken)
+                elif leftToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
+                    return ConstEvalConstExpNode(operator, leftToken, rightToken).evaluate()
     
         elif operator.tokenType == TT.PLUS:
             if rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
                 if leftToken.tokenType == TT.SYMBOL:
                     return LinearPolynomialExpNode(operator, leftToken, rightToken)
+                elif leftToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
+                    return ConstEvalConstExpNode(operator, leftToken, rightToken).evaluate()
         
     def __getUnaryExpression(self):
         leftToken = self.operandStack.pop()

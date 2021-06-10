@@ -1,5 +1,5 @@
-from transf.expression_nodes.udfunc_expnode import UdFuncExpNode
-from transf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
+
+from transf.laplace.laplacesort import LaplaceSort
 from transf.definitions.tokentype import TC, TT
 from transf.laplace.ltrans import LTrans
 from transf.definitions.token import LexicalToken
@@ -16,18 +16,17 @@ class LaplaceOf:
 
     def evaluate(self):
         lexer = Lexer(self.expressionStr)
-        inputStack = AdditiveStack(lexer.getTokens())
         # print(lexer.getTokens())
+        inputStack = AdditiveStack(lexer.getTokens())
         outputStack = AdditiveStack()
         for element in inputStack.getStack():
             if isinstance(element, LexicalToken) and (element.tokenType == TT.PLUS or element.tokenType == TT.MINUS):
                 print(element.tokenVal)
-                # outputStack.add(element)
+                outputStack.add(element)
                 continue
             node= Parser(element).getNodes()
-            if isinstance(node, TrigFuncExpNode):
-                laplaceNode = LTrans.trigFunc(expNode=node)
-            elif isinstance(node, UdFuncExpNode):
-                laplaceNode = LTrans.udfunc(expNode=node)
-            # outputStack.add(laplaceNode)
+            laplaceNode = LaplaceSort(node)
+            outputStack.add(laplaceNode)
             print(laplaceNode)
+
+    
