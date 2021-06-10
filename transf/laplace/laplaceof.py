@@ -1,3 +1,5 @@
+from transf.expression_nodes.udfunc_expnode import UdFuncExpNode
+from transf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
 from transf.definitions.tokentype import TC, TT
 from transf.laplace.ltrans import LTrans
 from transf.definitions.token import LexicalToken
@@ -23,6 +25,9 @@ class LaplaceOf:
                 # outputStack.add(element)
                 continue
             node= Parser(element).getNodes()
-            laplaceNode = LTrans.udfunc(expNode=node)
+            if isinstance(node, TrigFuncExpNode):
+                laplaceNode = LTrans.trigFunc(expNode=node)
+            elif isinstance(node, UdFuncExpNode):
+                laplaceNode = LTrans.udfunc(expNode=node)
             # outputStack.add(laplaceNode)
             print(laplaceNode)

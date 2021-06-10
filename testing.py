@@ -3,7 +3,7 @@ from transf.additivestack.additivestack import AdditiveStack
 from transf.lexer.lexer import Lexer
 from transf.parser.parser import Parser
 
-exprStr = 'ddelta(t+a)'
+exprStr = 'ustep(t)'
 print("The given strings is : " , exprStr, "\nThe laplace is: ")
 lapl = LaplaceOf(expressionText=exprStr)
 lapl.evaluate()
