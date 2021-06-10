@@ -13,13 +13,17 @@ class Lexer:
         self.currPos = Position(-1)
         self.currChar: Optional[str] = None
         self.tokens: list[LexicalToken] = []
+        self.isCurrCharUnderNeg = False
 
     def __nextChar(self):
         self.currPos.nextPos()
         if self.currPos.idx < len(self.expression):
             self.currChar = self.expression[self.currPos.idx]
         else:
-            self.currChar = None        
+            self.currChar = None   
+
+    def __getPrevChar(self):
+        return self.expression[self.currPos.idx - 1]     
 
     def __runLexer(self):
         self.__nextChar()
@@ -28,11 +32,22 @@ class Lexer:
                 self.__nextChar()
 
             elif self.currChar == '+':
+                if self.currPos.idx == 0:
+                    self.__nextChar()
+                    continue
+                elif self.__getPrevChar() in '+*-(/^ \n\t':
+                    self.__nextChar()
+                    continue
                 self.tokens.append(LexicalToken(ttype=TT.PLUS))
                 self.__nextChar()
             
             elif self.currChar == '-':
-                self.tokens.append(LexicalToken(ttype=TT.MINUS))
+                if self.currPos.idx == 0:
+                    self.isCurrCharUnderNeg = True
+                elif self.__getPrevChar() in '+*-(/^ \n\t':
+                    self.isCurrCharUnderNeg = True
+                else:
+                    self.tokens.append(LexicalToken(ttype=TT.MINUS))
                 self.__nextChar()
 
             elif self.currChar == '*':
@@ -48,6 +63,7 @@ class Lexer:
                 self.__nextChar()
 
             elif self.currChar == '(':
+                self.isCurrCharUnderNeg = False
                 self.tokens.append(LexicalToken(ttype=TT.LPAREN))
                 self.__nextChar()
 
@@ -65,11 +81,13 @@ class Lexer:
 
             elif self.currChar.isdigit():
                 number, ttype = self.__fetchDigits()
-                self.tokens.append(LexicalToken(ttype = ttype, tval=number))
+                self.tokens.append(LexicalToken(ttype = ttype, tval=number, isNeg=self.isCurrCharUnderNeg))
+                self.isCurrCharUnderNeg = False
 
             elif self.currChar.isalpha():
                 ttype, tval = self.__fetchAlpha()
-                self.tokens.append(LexicalToken(ttype=ttype, tval=tval))
+                self.tokens.append(LexicalToken(ttype=ttype, tval=tval, isNeg=self.isCurrCharUnderNeg))
+                self.isCurrCharUnderNeg = False
 
     def getTokens(self):
         self.__runLexer()

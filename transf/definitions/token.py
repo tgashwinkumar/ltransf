@@ -8,15 +8,17 @@ class LexicalToken:
         self.tokenType: TT = ttype
         self.tokenName = ttype.name
         self.tokenVal = tval if tval else ttype.value
+        if ttype == TT.INT:
+            self.tokenVal = int(self.tokenVal)
         self.tokenClass: TC = TokenClass(self.tokenType).getClass()
         self.isTokenNegative = isNeg
         self.isTokenReciprocal = isReciprocal
 
     def __str__(self):
-        return f"<LexicalToken {self.tokenType.name} : {self.tokenVal} >"
+        return f"<LexicalToken {self.tokenType.name} : {'-' if self.isTokenNegative else ''}{self.tokenVal} >"
 
     def __repr__(self):
-        return f"<LexicalToken {self.tokenType.name} : {self.tokenVal} >"
+        return f"<LexicalToken {self.tokenType.name} : {'-' if self.isTokenNegative else ''}{self.tokenVal} >"
 
     def getPrecedence(self):
         if not self.tokenClass == TC.OPER:
