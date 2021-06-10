@@ -1,3 +1,4 @@
+from transf.expression_nodes.linearpoly_expnode import LinearPolynomialExpNode
 from transf.expression_nodes.binarynode import BinaryNode
 from transf.expression_nodes.constevalconst_expnode import ConstEvalConstExpNode
 from transf.expression_nodes.constmultipoly_expnode import ConstMultiPolyExpNode
@@ -28,6 +29,7 @@ class Parser:
             self.currToken = self.lexerTokens[self.currPos.idx]
         else:
             self.currToken = None
+        # print("Position: ", self.currPos.idx, "\tToken: ", self.currToken)
 
 
     def __runParser(self):
@@ -106,6 +108,15 @@ class Parser:
                 else:
                     return ConstMultiPolyExpNode(operator, leftToken, rightToken)
 
+        elif operator.tokenType == TT.MINUS:
+            if rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
+                if leftToken.tokenType == TT.SYMBOL:
+                    return LinearPolynomialExpNode(operator, leftToken, rightToken)
+    
+        elif operator.tokenType == TT.PLUS:
+            if rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
+                if leftToken.tokenType == TT.SYMBOL:
+                    return LinearPolynomialExpNode(operator, leftToken, rightToken)
         
     def __getUnaryExpression(self):
         leftToken = self.operandStack.pop()

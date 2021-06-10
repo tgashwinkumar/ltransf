@@ -15,6 +15,7 @@ class LaplaceOf:
     def evaluate(self):
         lexer = Lexer(self.expressionStr)
         inputStack = AdditiveStack(lexer.getTokens())
+        # print(lexer.getTokens())
         outputStack = AdditiveStack()
         for element in inputStack.getStack():
             if isinstance(element, LexicalToken) and (element.tokenType == TT.PLUS or element.tokenType == TT.MINUS):
@@ -22,6 +23,6 @@ class LaplaceOf:
                 # outputStack.add(element)
                 continue
             node= Parser(element).getNodes()
-            laplaceNode = LTrans.trigFunc(expNode=node)
+            laplaceNode = LTrans.udfunc(expNode=node)
             # outputStack.add(laplaceNode)
             print(laplaceNode)

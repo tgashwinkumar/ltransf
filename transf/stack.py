@@ -29,6 +29,7 @@ class Stack:
         self.length:int = 1 if currentToken else 0
 
     def push(self, token: Union[StackToken,LexicalToken, BinaryNode]):
+        # print("Pushed:", token)
         if isinstance(token, (LexicalToken, BinaryNode)):
             token = StackToken(token)
         token.prevToken = self.currentToken
@@ -37,6 +38,7 @@ class Stack:
         return self.currentToken
 
     def pop(self):
+        # print("Popped: ", self.currentToken)
         temp = self.currentToken
         self.currentToken = self.currentToken.prevToken
         self.length -= 1

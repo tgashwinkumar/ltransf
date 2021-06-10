@@ -8,7 +8,10 @@ class LexicalToken:
         self.tokenType: TT = ttype
         self.tokenName = ttype.name
         self.tokenVal = tval if tval else ttype.value
-        if ttype == TT.INT:
+        if tval == 0:
+            self.tokenVal = 0
+            self.tokenType = TT.INT
+        elif ttype == TT.INT:
             self.tokenVal = int(self.tokenVal)
         self.tokenClass: TC = TokenClass(self.tokenType).getClass()
         self.isTokenNegative = isNeg

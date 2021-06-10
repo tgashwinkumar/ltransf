@@ -31,7 +31,7 @@ def trigFuncLTrans(expNode: TrigFuncExpNode):
         root=LexicalToken(TT.POWER),
         leftNode=param,
         rightNode=LexicalToken(TT.INT, 2)
-    )
+    ).evaluate()
 
     return BinaryNode(
         root=LexicalToken(TT.DIVID),

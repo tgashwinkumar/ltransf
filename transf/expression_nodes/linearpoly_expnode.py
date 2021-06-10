@@ -15,5 +15,9 @@ class LinearPolynomialExpNode(BinaryNode):
             else:
                 self.const = rightNode
         elif root.tokenType == TT.MINUS:
-            self.sign = TT.MINUS
-            self.const = rightNode
+            if self.const.isTokenNegative:
+                self.sign = TT.PLUS
+                self.const.isTokenNegative = False
+            else:
+                self.sign = TT.MINUS
+                self.const = rightNode

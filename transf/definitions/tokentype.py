@@ -39,7 +39,7 @@ class TT(Enum):
     LSQU = '['
     RSQU = ']'
 
-    EXP = 'exp'
+    EXP = 'e'
     PI = 'pi'
     CONST = 'const'
 

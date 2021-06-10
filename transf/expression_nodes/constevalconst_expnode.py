@@ -1,10 +1,11 @@
+from typing import Optional
 from transf.definitions.tokentype import TT
 from transf.errors.errors import NodeError
 from transf.definitions.token import LexicalToken
 from transf.expression_nodes.binarynode import BinaryNode
 
 class ConstEvalConstExpNode(BinaryNode):
-    def __init__(self, root: LexicalToken, leftNode: LexicalToken, rightNode: LexicalToken):
+    def __init__(self, root: LexicalToken, leftNode: LexicalToken, rightNode: Optional[LexicalToken]):
         super().__init__(root, leftNode=leftNode, rightNode=rightNode)
 
     def evaluate(self):
