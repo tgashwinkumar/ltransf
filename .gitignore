@@ -3,5 +3,7 @@ __pycache__
 build
 dist
 pyproject.toml
-*.txt
-PKG-INFO
+*.egg-info
+.pypirc
+setup.py
+requirements.txt
