@@ -1,4 +1,5 @@
 from enum import Enum
+import math
 
 class TC(Enum):
     OPER = 0
@@ -40,6 +41,6 @@ class TT(Enum):
     RSQU = ']'
 
     EXP = 'e'
-    PI = 'pi'
+    PI = math.pi
     CONST = 'const'
 

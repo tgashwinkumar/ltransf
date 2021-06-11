@@ -1,3 +1,4 @@
+from transf.expression_nodes.powern_expnode import PowerNExpNode
 from transf.laplace.lextokenfunc_ltrans import LexTokenFuncLTrans
 from transf.definitions.token import LexicalToken
 from transf.laplace.udfunc_ltrans import UDFuncLTrans
@@ -18,5 +19,9 @@ class LTrans:
     @staticmethod
     def lexTokenFunc(expNode: LexicalToken):
         return LexTokenFuncLTrans(expNode)
+
+    @staticmethod
+    def powerNFunc(expNode: PowerNExpNode):
+        return PowerNFuncLTrans(expNode)
 
         

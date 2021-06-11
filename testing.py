@@ -1,9 +1,9 @@
 from transf.laplace.laplaceof import LaplaceOf
-from transf.additivestack.additivestack import AdditiveStack
-from transf.lexer.lexer import Lexer
-from transf.parser.parser import Parser
+# from transf.additivestack.additivestack import AdditiveStack
+# from transf.lexer.lexer import Lexer
+# from transf.parser.parser import Parser
 
-exprStr = 't + 3 + sinh(2*t)'
+exprStr = 'ustep(t-3)'
 print("The given strings is : " , exprStr, "\nThe laplace is: ")
 lapl = LaplaceOf(expressionText=exprStr)
 lapl.evaluate()

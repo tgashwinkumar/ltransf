@@ -97,7 +97,8 @@ class Parser:
                 if isinstance(rightToken, (LexicalToken, Power1ExpNode)):
                     return ExponentialExpNode(operator, leftToken, rightToken)
             elif leftToken.tokenType == TT.SYMBOL:
-                return PowerNExpNode(operator, leftToken, rightToken)
+                if rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT:
+                    return PowerNExpNode(operator, leftToken, rightToken)
 
         elif operator.tokenType == TT.MULTI:
             if leftToken.tokenClass == TC.CONST or leftToken.tokenClass == TC.DIGIT:
@@ -131,6 +132,10 @@ class Parser:
             operator = operator.tokenValue
 
         if operator.tokenType == TT.SIN or operator.tokenType == TT.COS or operator.tokenType == TT.COSH or operator.tokenType == TT.SINH:
+            if isinstance(leftToken, LexicalToken) and (leftToken.tokenClass == TC.DIGIT or leftToken.tokenClass == TC.CONST):
+                return ConstEvalConstExpNode(operator, leftToken).evaluate()
             return TrigFuncExpNode(operator.tokenType, operator, leftToken)
         elif operator.tokenType == TT.USTEP or operator.tokenType == TT.DDELTA:
+            if isinstance(leftToken, LexicalToken) and (leftToken.tokenClass == TC.DIGIT or leftToken.tokenClass == TC.CONST):
+                return ConstEvalConstExpNode(operator, leftToken).evaluate()
             return UdFuncExpNode(operator.tokenType, operator, leftToken)

@@ -3,17 +3,25 @@ from transf.definitions.tokentype import TT
 from transf.errors.errors import NodeError
 from transf.definitions.token import LexicalToken
 from transf.expression_nodes.binarynode import BinaryNode
+import math
 
 class ConstEvalConstExpNode(BinaryNode):
-    def __init__(self, root: LexicalToken, leftNode: LexicalToken, rightNode: Optional[LexicalToken]):
+    def __init__(self, root: LexicalToken, leftNode: LexicalToken, rightNode: Optional[LexicalToken] = None):
         super().__init__(root, leftNode=leftNode, rightNode=rightNode)
 
     def evaluate(self):
-        if not isinstance(self.leftNode, LexicalToken) or not isinstance(self.rightNode, LexicalToken):
+        if not isinstance(self.leftNode, LexicalToken):
             raise NodeError
 
-        if self.leftNode.tokenType == TT.CONST or self.rightNode.tokenType == TT.CONST:
-            return BinaryNode(self.root, self.leftNode, self.rightNode)
+        if self.rightNode:
+            if not isinstance(self.rightNode, LexicalToken):
+                raise NodeError 
+        if self.rightNode:
+            if self.leftNode.tokenType == TT.CONST or self.rightNode.tokenType == TT.CONST:
+                return BinaryNode(self.root, self.leftNode, self.rightNode)
+        else:
+            if self.leftNode.tokenType == TT.CONST:
+                return BinaryNode(self.root, self.leftNode, self.rightNode)
 
         tval = 0
         if self.root.tokenType == TT.POWER:
@@ -21,11 +29,19 @@ class ConstEvalConstExpNode(BinaryNode):
         elif self.root.tokenType == TT.PLUS:
             tval = self.leftNode.tokenVal + self.rightNode.tokenVal
         elif self.root.tokenType == TT.MINUS:
-            tval = self.leftNode - self.rightNode.tokenVal
+            tval = self.leftNode.tokenVal - self.rightNode.tokenVal
         elif self.root.tokenType == TT.MULTI:
-            tval = self.leftNode * self.rightNode.tokenVal
+            tval = self.leftNode.tokenVal * self.rightNode.tokenVal
         elif self.root.tokenType == TT.DIVID:
-            tval = self.leftNode / self.rightNode.tokenVal
+            tval = self.leftNode.tokenVal / self.rightNode.tokenVal
+        elif self.root.tokenType == TT.SIN:
+            tval = round(math.sin(self.leftNode.tokenVal), 3)
+        elif self.root.tokenType == TT.COS:
+            tval = round(math.cos(self.leftNode.tokenVal), 3)
+        elif self.root.tokenType == TT.SINH:
+            tval = round(math.sinh(self.leftNode.tokenVal), 3)
+        elif self.root.tokenType == TT.COSH:
+            tval = round(math.cosh(self.leftNode.tokenVal), 3)
             
         ttype = TT.INT if tval == int(tval) else TT.FLOAT
         return LexicalToken(ttype=ttype, tval=tval)

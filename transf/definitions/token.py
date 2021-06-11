@@ -1,5 +1,5 @@
 from transf.definitions.tokenclass import TokenClass
-from typing import Literal, Union
+from typing import Union
 from transf.definitions.tokentype import TC, TT
 
 class LexicalToken:

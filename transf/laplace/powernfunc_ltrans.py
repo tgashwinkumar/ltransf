@@ -5,7 +5,7 @@ from transf.definitions.tokentype import TC, TT
 from transf.definitions.token import LexicalToken
 
 
-def LexTokenFuncLTrans(expNode: LexicalToken):
+def PowerNFuncLTrans(expNode: LexicalToken):
     symbolToken = LexicalToken(TT.SYMBOL, tval=Symbol('s').val)
 
     if expNode.tokenType == TT.SYMBOL:
@@ -25,6 +25,7 @@ def LexTokenFuncLTrans(expNode: LexicalToken):
             return LexicalToken(TT.INT, tval=0)
         return BinaryNode(
             root=LexicalToken(TT.DIVID),
-            leftNode=LexicalToken(expNode.tokenType, tval=expNode.tokenVal, isNeg=expNode.isTokenNegative),
+            leftNode=LexicalToken(
+                expNode.tokenType, tval=expNode.tokenVal, isNeg=expNode.isTokenNegative),
             rightNode=symbolToken
         )
