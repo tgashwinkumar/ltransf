@@ -7,3 +7,5 @@ pyproject.toml
 .pypirc
 setup.py
 requirements.txt
+tests
+testing.py
