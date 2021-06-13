@@ -1,5 +1,5 @@
 from typing import Optional
-from .tokentype import TC, TT
+from ltransf.definitions.tokentype import TC, TT
 
 class TokenClass:
 

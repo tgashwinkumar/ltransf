@@ -1,10 +1,11 @@
-from ..expression_nodes.powern_expnode import PowerNExpNode
-from ..expression_nodes.constevalconst_expnode import ConstEvalConstExpNode
-from ..definitions.symbol import Symbol
-from ..definitions.token import LexicalToken
-from ..expression_nodes.binarynode import BinaryNode
-from ..definitions.tokentype import TT
-from ..expression_nodes.trigfunc_expnode import TrigFuncExpNode
+from ltransf.definitions.symbol import Symbol
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.tokentype import TT
+from ltransf.expression_nodes.binarynode import BinaryNode
+from ltransf.expression_nodes.constevalconst_expnode import ConstEvalConstExpNode
+from ltransf.expression_nodes.powern_expnode import PowerNExpNode
+from ltransf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
+
 
 def trigFuncLTrans(expNode: TrigFuncExpNode):
     symbolToken = LexicalToken(TT.SYMBOL, tval=Symbol('s').val)

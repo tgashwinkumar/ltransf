@@ -5,15 +5,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="ltransf",
-    version="0.0.1",
+    version="0.0.2",
     author="tgashwinkumar",
     author_email="tgashwinkumar@gmail.com",
     description="Symbolic solver for Laplace transforms",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/tgashwinkumar/transf",
+    url="https://github.com/tgashwinkumar/ltransf",
     project_urls={
-        "Bug Tracker": "https://github.com/tgashwinkumar/transf/issues",
+        "Bug Tracker": "https://github.com/tgashwinkumar/ltransf/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",

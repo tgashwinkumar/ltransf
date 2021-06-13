@@ -1,10 +1,10 @@
-from ..expression_nodes.binarynode import BinaryNode
-from ..expression_nodes.exponential_expnode import ExponentialExpNode
-from ..expression_nodes.power1_expnode import Power1ExpNode
-from ..definitions.symbol import Symbol
-from ..definitions.tokentype import TT
-from ..definitions.token import LexicalToken
-from ..expression_nodes.udfunc_expnode import UdFuncExpNode
+from ltransf.definitions.symbol import Symbol
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.tokentype import TT
+from ltransf.expression_nodes.binarynode import BinaryNode
+from ltransf.expression_nodes.exponential_expnode import ExponentialExpNode
+from ltransf.expression_nodes.power1_expnode import Power1ExpNode
+from ltransf.expression_nodes.udfunc_expnode import UdFuncExpNode
 
 
 def UDFuncLTrans(expNode: UdFuncExpNode):

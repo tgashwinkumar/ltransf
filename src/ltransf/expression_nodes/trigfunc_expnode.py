@@ -1,9 +1,8 @@
 from typing import Union
-from ..errors.errors import NodeError
-from ..definitions.tokentype import TT
-from ..definitions.token import LexicalToken
-from .power1_expnode import Power1ExpNode
-from .binarynode import BinaryNode
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.tokentype import TT
+from ltransf.expression_nodes.binarynode import BinaryNode
+from ltransf.expression_nodes.power1_expnode import Power1ExpNode
 
 
 class TrigFuncExpNode(BinaryNode):

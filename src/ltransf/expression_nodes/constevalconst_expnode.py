@@ -1,8 +1,8 @@
 from typing import Optional
-from ..definitions.tokentype import TT
-from ..errors.errors import NodeError
-from ..definitions.token import LexicalToken
-from .binarynode import BinaryNode
+from ltransf.definitions.tokentype import TT
+from ltransf.errors.errors import NodeError
+from ltransf.definitions.token import LexicalToken
+from ltransf.expression_nodes.binarynode import BinaryNode
 import math
 
 class ConstEvalConstExpNode(BinaryNode):

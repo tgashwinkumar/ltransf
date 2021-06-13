@@ -1,7 +1,8 @@
 from typing import Optional, Union
-from .definitions.token import LexicalToken
-from .definitions.position import Position
-from .expression_nodes.binarynode import BinaryNode
+from ltransf.definitions.position import Position
+
+from ltransf.definitions.token import LexicalToken
+from ltransf.expression_nodes.binarynode import BinaryNode
 
 class StackToken:
     def __init__(self, tokenValue:Union[LexicalToken, BinaryNode], prevToken: Union[LexicalToken, BinaryNode,None] = None):

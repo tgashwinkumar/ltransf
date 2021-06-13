@@ -1,9 +1,9 @@
 from typing import Optional
 
-from ..definitions.position import Position
-from ..definitions.symbol import Symbol
-from ..definitions.token import LexicalToken
-from ..definitions.tokentype import TT
+from ltransf.definitions.position import Position
+from ltransf.definitions.symbol import Symbol
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.tokentype import TT
 
 
 class Lexer:

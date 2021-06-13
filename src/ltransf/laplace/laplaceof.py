@@ -1,12 +1,10 @@
-
-from .laplacesort import LaplaceSort
-from ..definitions.tokentype import TT
-from ..definitions.token import LexicalToken
-from ..additivestack.additivestack import AdditiveStack
-from ..parser.parser import Parser
-from ..definitions.symbol import Symbol
-from ..lexer.lexer import Lexer
-
+from ltransf.definitions.tokentype import TT
+from ltransf.parser.parser import Parser
+from ltransf.additivestack.additivestack import AdditiveStack
+from ltransf.definitions.symbol import Symbol
+from ltransf.definitions.token import LexicalToken
+from ltransf.lexer.lexer import Lexer
+from ltransf.laplace.laplacesort import LaplaceSort
 
 class LaplaceOf:
     def __init__(self, expressionText: str, symbol: Symbol = Symbol('t')):

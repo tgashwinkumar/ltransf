@@ -1,6 +1,6 @@
 from typing import Union
-from .tokenclass import TokenClass
-from .tokentype import TC, TT
+from ltransf.definitions.tokenclass import TokenClass
+from ltransf.definitions.tokentype import TC, TT
 
 class LexicalToken:
 

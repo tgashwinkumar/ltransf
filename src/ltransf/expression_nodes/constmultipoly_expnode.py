@@ -1,7 +1,8 @@
-from ..errors.errors import NodeError
-from ..definitions.tokentype import TC
-from ..definitions.token import LexicalToken
-from .binarynode import BinaryNode
+
+from ltransf.definitions.tokentype import TC
+from ltransf.definitions.token import LexicalToken
+from ltransf.errors.errors import NodeError
+from ltransf.expression_nodes.binarynode import BinaryNode
 
 
 class ConstMultiPolyExpNode(BinaryNode):

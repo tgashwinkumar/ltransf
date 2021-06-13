@@ -1,18 +1,18 @@
 from typing import List, Optional
-from ..expression_nodes.linearpoly_expnode import LinearPolynomialExpNode
-from ..expression_nodes.binarynode import BinaryNode
-from ..expression_nodes.constevalconst_expnode import ConstEvalConstExpNode
-from ..expression_nodes.constmultipoly_expnode import ConstMultiPolyExpNode
-from ..expression_nodes.udfunc_expnode import UdFuncExpNode
-from ..expression_nodes.trigfunc_expnode import TrigFuncExpNode
-from ..expression_nodes.power1_expnode import Power1ExpNode
-from ..expression_nodes.powern_expnode import PowerNExpNode
-from ..expression_nodes.exponential_expnode import ExponentialExpNode
-from ..lexer.lexer import Lexer
-from ..definitions.position import Position
-from ..stack import Stack, StackToken
-from ..definitions.token import LexicalToken
-from ..definitions.tokentype import TC, TT
+from ltransf.expression_nodes.linearpoly_expnode import LinearPolynomialExpNode
+from ltransf.expression_nodes.binarynode import BinaryNode
+from ltransf.expression_nodes.constevalconst_expnode import ConstEvalConstExpNode
+from ltransf.expression_nodes.constmultipoly_expnode import ConstMultiPolyExpNode
+from ltransf.expression_nodes.udfunc_expnode import UdFuncExpNode
+from ltransf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
+from ltransf.expression_nodes.power1_expnode import Power1ExpNode
+from ltransf.expression_nodes.powern_expnode import PowerNExpNode
+from ltransf.expression_nodes.exponential_expnode import ExponentialExpNode
+from ltransf.lexer.lexer import Lexer
+from ltransf.definitions.position import Position
+from ltransf.stack import Stack, StackToken
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.tokentype import TC, TT
 
 
 class Parser:

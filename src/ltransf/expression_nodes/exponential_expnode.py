@@ -1,9 +1,10 @@
 from typing import Union
-from .power1_expnode import Power1ExpNode
-from ..errors.errors import NodeError
-from ..definitions.tokentype import TT
-from ..definitions.token import LexicalToken
-from .binarynode import BinaryNode
+
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.tokentype import TT
+from ltransf.errors.errors import NodeError
+from ltransf.expression_nodes.binarynode import BinaryNode
+from ltransf.expression_nodes.power1_expnode import Power1ExpNode
 
 
 class ExponentialExpNode(BinaryNode):

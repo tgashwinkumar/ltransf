@@ -1,9 +1,9 @@
 from typing import Union
-from .ltrans import LTrans
-from ..expression_nodes.trigfunc_expnode import TrigFuncExpNode
-from ..definitions.token import LexicalToken
-from ..expression_nodes.binarynode import BinaryNode
-from ..expression_nodes.udfunc_expnode import UdFuncExpNode
+from ltransf.laplace.ltrans import LTrans
+from ltransf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
+from ltransf.definitions.token import LexicalToken
+from ltransf.expression_nodes.binarynode import BinaryNode
+from ltransf.expression_nodes.udfunc_expnode import UdFuncExpNode
 
 def LaplaceSort(node: Union[LexicalToken, BinaryNode]):
     if isinstance(node, TrigFuncExpNode):

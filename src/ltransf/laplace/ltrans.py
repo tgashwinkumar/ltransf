@@ -1,10 +1,11 @@
-from .udfunc_ltrans import UDFuncLTrans
-from .trigfunc_ltrans import trigFuncLTrans
-from .lextokenfunc_ltrans import LexTokenFuncLTrans
-from ..definitions.token import LexicalToken
-from ..expression_nodes.powern_expnode import PowerNExpNode
-from ..expression_nodes.udfunc_expnode import UdFuncExpNode
-from ..expression_nodes.trigfunc_expnode import TrigFuncExpNode
+from ltransf.definitions.token import LexicalToken
+from ltransf.expression_nodes.powern_expnode import PowerNExpNode
+from ltransf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
+from ltransf.expression_nodes.udfunc_expnode import UdFuncExpNode
+from ltransf.laplace.lextokenfunc_ltrans import LexTokenFuncLTrans
+from ltransf.laplace.trigfunc_ltrans import trigFuncLTrans
+from ltransf.laplace.udfunc_ltrans import UDFuncLTrans
+
 
 class LTrans:
 

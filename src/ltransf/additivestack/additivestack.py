@@ -1,7 +1,7 @@
 from typing import List, Optional, Union
-from ..definitions.tokentype import TT
-from ..definitions.token import LexicalToken
-from ..definitions.position import Position
+from ltransf.definitions.tokentype import TT
+from ltransf.definitions.token import LexicalToken
+from ltransf.definitions.position import Position
 
 class AdditiveStack:
 

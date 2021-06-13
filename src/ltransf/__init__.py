@@ -1,1 +1,1 @@
-from .laplace.laplaceof import LaplaceOf
+from ltransf.laplace.laplaceof import LaplaceOf

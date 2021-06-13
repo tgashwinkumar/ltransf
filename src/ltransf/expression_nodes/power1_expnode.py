@@ -1,7 +1,7 @@
-from ..errors.errors import NonPower1Error
-from ..definitions.tokentype import TC, TT
-from ..definitions.token import LexicalToken
-from .binarynode import BinaryNode
+from ltransf.errors.errors import NonPower1Error
+from ltransf.definitions.tokentype import TC, TT
+from ltransf.definitions.token import LexicalToken
+from ltransf.expression_nodes.binarynode import BinaryNode
 
 
 class Power1ExpNode(BinaryNode):

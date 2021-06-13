@@ -1,8 +1,8 @@
 from typing import Union
-from ..definitions.tokentype import TT
-from ..expression_nodes.linearpoly_expnode import LinearPolynomialExpNode
-from ..definitions.token import LexicalToken
-from .binarynode import BinaryNode
+from ltransf.definitions.tokentype import TT
+from ltransf.expression_nodes.linearpoly_expnode import LinearPolynomialExpNode
+from ltransf.definitions.token import LexicalToken
+from ltransf.expression_nodes.binarynode import BinaryNode
 
 
 class UdFuncExpNode(BinaryNode):
