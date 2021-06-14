@@ -31,7 +31,6 @@ class Parser:
             self.currToken = None
         # print("Position: ", self.currPos.idx, "\tToken: ", self.currToken)
 
-
     def __runParser(self):
         # print("Running Parser")  
         self.__advance()
@@ -57,14 +56,17 @@ class Parser:
                 self.operatorStack.push(self.currToken)
                 self.__advance()
             elif self.currToken.tokenType == TT.RPAREN:
-                while not self.operatorStack.getCurrent().tokenType == TT.LPAREN:
-                    expression = self.__getBinaryExpression()
-                    self.operandStack.push(expression)
                 if self.operatorStack.getCurrent().tokenType == TT.LPAREN:
                     self.operatorStack.pop()
-                if self.operatorStack.getCurrent().tokenClass == TC.FUNC:
-                    expression = self.__getUnaryExpression()
-                    self.operandStack.push(expression)
+                else:
+                    while not self.operatorStack.getCurrent().tokenType == TT.LPAREN:
+                        expression = self.__getBinaryExpression()
+                        self.operandStack.push(expression)
+                    if self.operatorStack.getCurrent().tokenType == TT.LPAREN:
+                        self.operatorStack.pop()
+                    if self.operatorStack.getCurrent().tokenClass == TC.FUNC:
+                        expression = self.__getUnaryExpression()
+                        self.operandStack.push(expression)
                 self.__advance() 
         while not self.operatorStack.isEmpty():
             expression = self.__getBinaryExpression()
@@ -102,11 +104,14 @@ class Parser:
 
         elif operator.tokenType == TT.MULTI:
             if leftToken.tokenClass == TC.CONST or leftToken.tokenClass == TC.DIGIT:
-                if rightToken.tokenType == TT.SYMBOL:
+                if isinstance(rightToken, LexicalToken) and rightToken.tokenType == TT.SYMBOL:
                     return Power1ExpNode(operator, leftToken, rightToken)
-                elif rightToken.tokenClass == TC.DIGIT or rightToken.tokenClass == TC.CONST:
+                elif isinstance(rightToken, LexicalToken) and (rightToken.tokenClass == TC.DIGIT or rightToken.tokenClass == TC.CONST):
                     return ConstEvalConstExpNode(operator, leftToken, rightToken).evaluate()
                 else:
+                    return ConstMultiPolyExpNode(operator, leftToken, rightToken)
+            elif rightToken.tokenClass == TC.CONST or rightToken.tokenClass == TC.DIGIT: 
+                if leftToken.tokenClass == TC.CONST or leftToken.tokenClass == TC.DIGIT:
                     return ConstMultiPolyExpNode(operator, leftToken, rightToken)
 
         elif operator.tokenType == TT.MINUS:

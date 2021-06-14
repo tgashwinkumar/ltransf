@@ -7,8 +7,7 @@ from ltransf.expression_nodes.powern_expnode import PowerNExpNode
 from ltransf.expression_nodes.trigfunc_expnode import TrigFuncExpNode
 
 
-def trigFuncLTrans(expNode: TrigFuncExpNode):
-    symbolToken = LexicalToken(TT.SYMBOL, tval=Symbol('s').val)
+def trigFuncLTrans(expNode: TrigFuncExpNode, symbolToken: LexicalToken):
     param = expNode.param
     funcType = expNode.funcType
 

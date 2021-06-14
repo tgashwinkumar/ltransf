@@ -7,8 +7,7 @@ from ltransf.expression_nodes.power1_expnode import Power1ExpNode
 from ltransf.expression_nodes.udfunc_expnode import UdFuncExpNode
 
 
-def UDFuncLTrans(expNode: UdFuncExpNode):
-    symbolToken = LexicalToken(TT.SYMBOL, tval=Symbol('s').val)
+def UDFuncLTrans(expNode: UdFuncExpNode, symbolToken: LexicalToken):
     param = expNode.param
     funcType = expNode.funcType
 
